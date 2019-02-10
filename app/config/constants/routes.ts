@@ -1,7 +1,7 @@
 import Config from 'react-native-config';
 
-// let API_ROOT = '';
-let API_ROOT = Config.API_ROOT;
+let API_ROOT = '';
+// let API_ROOT = Config.API_ROOT;
 if (!API_ROOT) {
   API_ROOT = 'https://ordersomeapi.de/api/';
 } else {
