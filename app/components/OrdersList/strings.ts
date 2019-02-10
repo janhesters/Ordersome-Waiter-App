@@ -4,12 +4,14 @@ import LocalizedString from 'react-native-localization';
 const strings = new LocalizedString({
   en: {
     newOrders: 'New orders',
+    processedOrders: 'Processed orders',
     noNewOrders: 'There are currently no new orders.',
     serviceAsked: 'asked for service.',
     billCalled: 'asked for the bill.'
   },
   de: {
     newOrders: 'Neue Bestellungen',
+    processedOrders: 'Bearbeitete Bestellungen',
     noNewOrders: 'Es gibt momentan keine neuen Bestellungen.',
     serviceAsked: 'hat nach der Bedienung gerufen.',
     billCalled: 'hat nach der Rechnung gerufen.'

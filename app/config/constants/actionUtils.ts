@@ -53,6 +53,8 @@ export const ADD_RESTAURANT_INFOS = 'Restaurant Infos/ADD';
 export const ADD_RESTAURANTS = 'Restaurants/ADD';
 export const PICK_RESTAURANT = 'Restaurants/PICK';
 
+export const TOGGLE_SETTINGS = 'Settings/TOGGLE';
+
 // Sub Categories
 export const ADD_SUB_CATEGORIES = 'Sub Categories/ADD';
 

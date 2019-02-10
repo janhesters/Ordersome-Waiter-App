@@ -58,6 +58,7 @@ export const rawTablesWithOrdersListResponse = [
             license_type: 'stampcard'
           }
         ],
+        miscellaneousName: 'Shisha',
         name: 'Lulu\'s Coffee & Co',
         restaurant_infos: [
           {
@@ -83,6 +84,7 @@ export const rawTablesWithOrdersListResponse = [
       {
         amount: 2,
         checkin_uuid: '8df17847-b9c6-49fb-bd1d-3e56abce6cb1',
+        created: '2019-04-11T13:35:30Z',
         custom_choice_items: [],
         menu_item: 'aaa659e3-e15c-4a3d-9dae-120beef14eee',
         menu_item_price: '54e8caaa-dbd9-49d3-a8ae-4df3f9a2ec98',
@@ -96,6 +98,7 @@ export const rawTablesWithOrdersListResponse = [
     waiter_orders: [
       {
         amount: 2,
+        created: '2019-04-11T10:20:30Z',
         custom_choice_items: [],
         menu_item: 'aaa659e3-e15c-4a3d-9dae-120beef14eee',
         menu_item_price: '54e8caaa-dbd9-49d3-a8ae-4df3f9a2ec98',
@@ -169,6 +172,7 @@ export const normalizedTablesWithOrdersListResponse: TablesWithOrdersListRespons
       '46050164-bba2-48b4-bcd2-cc5a1b902d74': {
         amount: 2,
         checkin: '8df17847-b9c6-49fb-bd1d-3e56abce6cb1',
+        created: new Date('2019-04-11T13:35:30Z'),
         customChoiceItems: [],
         menuItem: 'aaa659e3-e15c-4a3d-9dae-120beef14eee',
         menuItemPrice: '54e8caaa-dbd9-49d3-a8ae-4df3f9a2ec98',
@@ -180,6 +184,7 @@ export const normalizedTablesWithOrdersListResponse: TablesWithOrdersListRespons
       'f71e1f3b-4519-47b8-8a48-b4a0439be894': {
         amount: 2,
         checkin: undefined,
+        created: new Date('2019-04-11T10:20:30Z'),
         customChoiceItems: [],
         menuItem: 'aaa659e3-e15c-4a3d-9dae-120beef14eee',
         menuItemPrice: '54e8caaa-dbd9-49d3-a8ae-4df3f9a2ec98',
@@ -202,6 +207,7 @@ export const normalizedTablesWithOrdersListResponse: TablesWithOrdersListRespons
         hasMenu: true,
         itemClassifications: ['de34b2c5-f1d8-44ca-9a17-9fd620a74f29'],
         licenses: ['9126075649', '7681344493'],
+        miscellaneousName: 'Shisha',
         name: 'Lulu\'s Coffee & Co',
         restaurantInfos: ['f8f90da2-0322-413f-a463-1872b913fffb'],
         slug: 'lulus-coffee-co',

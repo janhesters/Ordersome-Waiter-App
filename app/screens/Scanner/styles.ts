@@ -1,50 +1,28 @@
 import { Dimensions, Platform, StyleSheet } from 'react-native';
-import { platformGreen, platformRed } from '../../config/constants/colors';
+import { borderGrey, platformGreen, platformRed } from '../../config/constants/colors';
 
 export const green = platformGreen;
 export const red = platformRed;
 
-const width = Dimensions.get('window').width / 3;
+const width = Dimensions.get('window').width / 4;
 
 const styles = StyleSheet.create({
-  addButton: {
-    backgroundColor: green
-  },
-  button: {
-    borderRadius: 5,
-    height: width * (1 / 6),
-    width
-  },
   container: {
     flex: 1,
     flexDirection: 'row'
   },
-  content: {
+  leftContainer: {
     alignItems: 'center',
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'space-evenly',
-    width: '100%'
+    borderRightColor: borderGrey,
+    borderRightWidth: Platform.select({
+      android: 1,
+      ios: StyleSheet.hairlineWidth
+    }),
+    flex: 2,
+    justifyContent: 'center'
   },
-  contentContainer: {
-    alignItems: 'center',
-    width: '100%'
-  },
-  deleteButton: {
-    backgroundColor: red
-  },
-  icon: {
-    paddingLeft: 10
-  },
-  inputContainer: {
-    width: '30%'
-  },
-  inputText: {
-    textAlign: 'center'
-  },
-  text: {
-    fontSize: 25,
-    fontWeight: '500'
+  rightContainer: {
+    flex: 3
   }
 });
 

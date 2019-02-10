@@ -7,6 +7,7 @@ describe('add orders action creator', () => {
       'order-abc': {
         amount: 1,
         checkin: 'checkin-abc',
+        created: new Date('2019-04-11T13:35:30Z'),
         customChoiceItems: [],
         menuItem: 'menuItem-abc',
         menuItemPrice: 'menuItemPrice-abc',

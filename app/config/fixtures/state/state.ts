@@ -142,6 +142,7 @@ export const fullState: RootState = {
     'order-abc': {
       amount: 2,
       checkin: 'checkin-abc',
+      created: new Date('2019-04-11T13:35:30Z'),
       customChoiceItems: ['customChoiceItem-abc'],
       menuItem: 'menuItem-abc',
       menuItemPrice: 'menuItemPrice-abc',
@@ -152,6 +153,7 @@ export const fullState: RootState = {
     },
     'order-def': {
       amount: 1,
+      created: new Date('2019-04-11T10:20:30Z'),
       customChoiceItems: [],
       menuItem: 'menuItem-def',
       menuItemPrice: 'menuItemPrice-def',
@@ -175,6 +177,7 @@ export const fullState: RootState = {
         hasMenu: true,
         itemClassifications: ['itemClassification-abc'],
         licenses: ['license-abc'],
+        miscellaneousName: 'Shisha',
         name: 'Test Restaurant',
         restaurantInfos: ['restaurantInfo-abc'],
         slug: 'test-restaurant',
@@ -183,6 +186,7 @@ export const fullState: RootState = {
     },
     picked: 'test-restaurant'
   },
+  settings: [],
   subCategories: {
     'subCategory-abc': {
       name: 'Casserole',

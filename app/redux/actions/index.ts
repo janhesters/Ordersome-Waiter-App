@@ -17,6 +17,7 @@ import { add as addMenus } from './menus/menus.actions';
 import { add as addOrders } from './orders/orders.actions';
 import { add as addRestaurantInfos } from './restaurantInfos/restaurantInfos.actions';
 import { add as addRestaurants, pick as pickRestaurants } from './restaurants/restaurants.actions';
+import { toggle as toggleSetting } from './settings/settings.actions';
 import { add as addSubCategories } from './subCategories/subCategories.actions';
 import { add as addTables } from './tables/tables.actions';
 import { add as addWaitercalls } from './waitercalls/waitercalls.actions';
@@ -44,5 +45,6 @@ export {
   addUser,
   addWaitercalls,
   clear,
-  pickRestaurants
+  pickRestaurants,
+  toggleSetting
 };

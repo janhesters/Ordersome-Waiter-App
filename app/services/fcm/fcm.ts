@@ -8,6 +8,7 @@ import buttonStrings from '../../config/constants/buttonStrings';
 import {
   SERVER_VALUES_FCM_TYPE_CHECKIN,
   SERVER_VALUES_FCM_TYPE_ORDER,
+  SERVER_VALUES_FCM_TYPE_ORDER_STATUS,
   SERVER_VALUES_FCM_TYPE_WAITERCALL,
   SERVER_VALUES_FCM_WAITER_DEVICE_PREFIX
 } from '../../config/constants/serverValues';
@@ -136,10 +137,9 @@ export const handleFCMToken = (fcmToken: string): Promise<any> =>
 
 export const handleMessageData = (messageData: FCMMessage): void => {
   const { type, message_data } = messageData;
-  const { tables } = store.getState();
+  const { tables, orders } = store.getState();
   const { dispatch } = store;
   const data: any = camelizeKeys(JSON.parse(message_data));
-
   switch (type) {
     case SERVER_VALUES_FCM_TYPE_WAITERCALL:
       (data as Waitercall).consumer = data.consumer.uuid;
@@ -150,11 +150,15 @@ export const handleMessageData = (messageData: FCMMessage): void => {
         for (const order of data) {
           order.checkin = order.checkinUuid;
           delete order.checkinUuid;
+          order.customChoiceItems = order.customChoiceItems.map((x: any) => x.uuid);
+          order.created = new Date(order.created);
           dispatch(addOrders({ [order.uuid]: order }));
         }
       } else {
         data.checkin = data.checkinUuid;
         delete data.checkinUuid;
+        data.customChoiceItems = data.customChoiceItems.map((x: any) => x.uuid);
+        data.created = new Date(data.created);
         dispatch(addOrders({ [data.uuid]: data }));
       }
       break;
@@ -171,6 +175,12 @@ export const handleMessageData = (messageData: FCMMessage): void => {
         ])
       );
       break;
+    case SERVER_VALUES_FCM_TYPE_ORDER_STATUS: {
+      const { orderUuid, orderStatus } = data;
+      const order = { ...orders[orderUuid], orderStatus };
+      dispatch(addOrders({ [order.uuid]: order }));
+      break;
+    }
     default:
       // tslint:disable-next-line no-console
       console.log('Error processing notification - unknown type:', type);

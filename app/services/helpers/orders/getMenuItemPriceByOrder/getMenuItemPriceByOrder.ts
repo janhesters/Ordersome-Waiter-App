@@ -4,13 +4,12 @@ export const getMenuItemPriceByOrder = (
   menuItemPrices: NormalizedData<MenuItemPrice>,
   order: Order
 ): string => {
-  const label = menuItemPrices[order.menuItemPrice].label;
+  const { price, label, size } = menuItemPrices[order.menuItemPrice];
   if (!!label) {
-    return label;
+    return `${label} ${price}€`;
   }
-  const size = menuItemPrices[order.menuItemPrice].size;
   if (!!size) {
-    return size.size + size.unit;
+    return `${size.size + size.unit} ${price}€`;
   }
-  return '';
+  return `${price}€`;
 };

@@ -1,60 +1,39 @@
 import { combineReducers } from 'redux';
 import { StateType } from 'typesafe-actions';
-import addressesReducer, {
-  AddressesAction
-} from './addressesReducer/addressesReducer';
-import allergenicsReducer, {
-  AllergenicsAction
-} from './allergenicsReducer/allergenicsReducer';
-import categoriesReducer, {
-  CategoriesAction
-} from './categoriesReducer/categoriesReducer';
-import checkinsReducer, {
-  CheckinsAction
-} from './checkinsReducer/checkinsReducer';
-import consumersReducer, {
-  ConsumersAction
-} from './consumersReducer/consumersReducer';
-import coordinatesReducer, {
-  CoordinatesAction
-} from './coordinatesReducer/coordinatesReducer';
+import addressesReducer, { AddressesAction } from './addressesReducer/addressesReducer';
+import allergenicsReducer, { AllergenicsAction } from './allergenicsReducer/allergenicsReducer';
+import categoriesReducer, { CategoriesAction } from './categoriesReducer/categoriesReducer';
+import checkinsReducer, { CheckinsAction } from './checkinsReducer/checkinsReducer';
+import consumersReducer, { ConsumersAction } from './consumersReducer/consumersReducer';
+import coordinatesReducer, { CoordinatesAction } from './coordinatesReducer/coordinatesReducer';
 import customChoiceItemsReducer, {
   CustomChoiceItemsAction
 } from './customChoiceItemsReducer/customChoiceItemsReducer';
 import customChoicesReducer, {
   CustomChoicesAction
 } from './customChoicesReducer/customChoicesReducer';
-import ingredientsReducer, {
-  IngredientsAction
-} from './ingredientsReducer/ingredientsReducer';
+import ingredientsReducer, { IngredientsAction } from './ingredientsReducer/ingredientsReducer';
 import itemClassificationsReducer, {
   ItemClassificationsAction
 } from './itemClassificationsReducer/itemClassificationsReducer';
-import licensesReducer, {
-  LicensesAction
-} from './licensesReducer/licensesReducer';
+import licensesReducer, { LicensesAction } from './licensesReducer/licensesReducer';
 import menuItemPricesReducer, {
   MenuItemPricesAction
 } from './menuItemPricesReducer/menuItemPricesReducer';
-import menuItemsReducer, {
-  MenuItemsAction
-} from './menuItemsReducer/menuItemsReducer';
+import menuItemsReducer, { MenuItemsAction } from './menuItemsReducer/menuItemsReducer';
 import menusReducer, { MenusAction } from './menusReducer/menusReducer';
 import ordersReducer, { OrdersAction } from './ordersReducer/ordersReducer';
 import restaurantInfosReducer, {
   RestaurantInfosAction
 } from './restaurantInfosReducer/restaurantInfosReducer';
-import restaurantsReducer, {
-  RestaurantAction
-} from './restaurantsReducer/restaurantsReducer';
+import restaurantsReducer, { RestaurantAction } from './restaurantsReducer/restaurantsReducer';
+import settingsReducer, { SettingsAction } from './settingsReducer/settingsReducer';
 import subCategoriesReducer, {
   SubCategoriesAction
 } from './subCategoriesReducer/subCategoriesReducer';
 import tablesReducer, { TablesAction } from './tablesReducer/tablesReducer';
 import userReducer, { UserAction } from './userReducer/userReducer';
-import waitercallsReducer, {
-  WaitercallsAction
-} from './waitercallsReducer/waitercallsReducer';
+import waitercallsReducer, { WaitercallsAction } from './waitercallsReducer/waitercallsReducer';
 
 const rootReducer = combineReducers({
   addresses: addressesReducer,
@@ -74,6 +53,7 @@ const rootReducer = combineReducers({
   orders: ordersReducer,
   restaurantInfos: restaurantInfosReducer,
   restaurants: restaurantsReducer,
+  settings: settingsReducer,
   subCategories: subCategoriesReducer,
   tables: tablesReducer,
   users: userReducer,
@@ -101,6 +81,7 @@ export type RootAction =
   | OrdersAction
   | RestaurantInfosAction
   | RestaurantAction
+  | SettingsAction
   | SubCategoriesAction
   | TablesAction
   | UserAction

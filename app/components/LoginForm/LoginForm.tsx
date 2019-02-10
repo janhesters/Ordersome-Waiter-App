@@ -41,6 +41,7 @@ export class LoginForm extends Component<Props> {
       )
       .catch(err => {
         logout(dispatch);
+        console.log(err);
         formikBag.setSubmitting(false);
         alert(err);
       });

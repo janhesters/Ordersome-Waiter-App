@@ -1,7 +1,8 @@
 import React, { PureComponent } from 'react';
-import { FlatList, Image, ImageStyle, Text } from 'react-native';
-import { ListItem } from 'react-native-elements';
+import { Image, ImageStyle, SectionList, Text } from 'react-native';
+import { Icon, ListItem } from 'react-native-elements';
 import { connect } from 'react-redux';
+import { borderGrey } from '../../config/constants/colors';
 import {
   Checkin,
   CustomChoiceItem,
@@ -22,7 +23,8 @@ import {
   getAllMenuItemPricesNormalizedSelector,
   getAllMenuItemsNormalizedSelector,
   getAllTablesSelector,
-  getPickedRestaurantSelector
+  getPickedRestaurantSelector,
+  getProcessedOrdersSelector
 } from '../../redux/selectors';
 import { postOrderStatusCreate, putUpdateWaitercall } from '../../services/api';
 import {
@@ -32,6 +34,7 @@ import {
   getTableNumberByWaitercall
 } from '../../services/helpers';
 import alert from '../../services/utils/alert';
+import { getIconName } from '../../services/utils/core';
 import strings from './strings';
 import styles from './styles';
 
@@ -44,6 +47,7 @@ export interface Props {
   menuItems: NormalizedData<MenuItem>;
   orders: Order[];
   pickedRestaurant: string;
+  processedOrders: Order[];
   tables: Table[];
   waitercalls: Waitercall[];
 }
@@ -92,20 +96,29 @@ export class OrdersList extends PureComponent<Props> {
       });
   };
 
-  public renderHeader = (active: boolean) => (
-    <ListItem
-      title={strings.newOrders}
-      titleStyle={active ? styles.big : styles.listItemTitle}
-      bottomDivider={true}
-      leftIcon={
-        <Image
-          style={[styles.tableIcon, active ? styles.active : null] as ImageStyle}
-          source={require('../../assets/icons/table.png')}
-          resizeMode="contain"
-        />
-      }
-    />
-  );
+  public renderHeader = ({ title, data }: { title: string; data: Array<Order | Waitercall> }) => {
+    const active = data.length > 0;
+    const isNewOrdersSection = title === strings.newOrders;
+    return (
+      <ListItem
+        title={title}
+        titleStyle={active && isNewOrdersSection ? styles.big : styles.listItemTitle}
+        bottomDivider={true}
+        topDivider={true}
+        leftIcon={
+          isNewOrdersSection ? (
+            <Image
+              style={[styles.tableIcon, active ? styles.active : null] as ImageStyle}
+              source={require('../../assets/icons/table.png')}
+              resizeMode="contain"
+            />
+          ) : (
+            <Icon name={getIconName('filing')} type="ionicon" color={borderGrey} />
+          )
+        }
+      />
+    );
+  };
 
   public renderItem = ({ item }: { item: Order | Waitercall }) => {
     const { checkins, customChoiceItems, menuItemPrices, menuItems, tables } = this.props;
@@ -136,13 +149,24 @@ export class OrdersList extends PureComponent<Props> {
   };
 
   public render() {
-    const { orders, waitercalls } = this.props;
+    const { orders, waitercalls, processedOrders } = this.props;
+    const sections = [
+      {
+        data: [...orders, ...waitercalls],
+        title: strings.newOrders
+      },
+      {
+        data: processedOrders,
+        title: strings.processedOrders
+      }
+    ];
     return (
-      <FlatList<Order | Waitercall>
+      <SectionList
+        stickySectionHeadersEnabled={true}
         keyExtractor={this.keyExtractor}
-        data={[...orders, ...waitercalls]}
         renderItem={this.renderItem}
-        ListHeaderComponent={this.renderHeader([...orders, ...waitercalls].length > 0)}
+        sections={sections}
+        renderSectionHeader={({ section }: { section: any }) => this.renderHeader(section)}
         ListEmptyComponent={<ListItem title={strings.noNewOrders} />}
       />
     );
@@ -156,6 +180,7 @@ const mapStateToProps = (state: RootState) => ({
   menuItems: getAllMenuItemsNormalizedSelector(state),
   orders: getActiveOrdersSelector(state),
   pickedRestaurant: getPickedRestaurantSelector(state),
+  processedOrders: getProcessedOrdersSelector(state),
   tables: getAllTablesSelector(state),
   waitercalls: getAllActiveWaitercallsSelector(state)
 });

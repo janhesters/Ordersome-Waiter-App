@@ -15,6 +15,7 @@ export const orderSchema = new schema.Entity(
         {
           ...value,
           checkin: value.checkinUuid,
+          created: new Date(value.created),
           customChoiceItems: value.customChoiceItems.map((item: Item) => item.uuid),
           table: value.tableUuid
         }

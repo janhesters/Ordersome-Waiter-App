@@ -49,6 +49,7 @@ export const rawRestaurantListResponse = [
         license_type: 'stampcard'
       }
     ],
+    miscellaneous_name: 'Shisha',
     name: 'Lulu\'s Coffee & Co',
     restaurant_infos: [
       {
@@ -163,6 +164,7 @@ export const normalizedRestaurantListResponse: RestaurantListResponse = {
           '44761b27-cbdc-4598-946a-eb879240c636'
         ],
         licenses: ['9126075649', '7681344493'],
+        miscellaneousName: 'Shisha',
         name: 'Lulu\'s Coffee & Co',
         restaurantInfos: [
           'f8f90da2-0322-413f-a463-1872b913fffb',

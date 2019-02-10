@@ -3,6 +3,7 @@ export const SERVER_VALUES_ORDER_STATUSES_ACTIVE = ['ordered', 'pickupable'];
 export const SERVER_VALUES_ORDER_STATUSES_FINISHED = ['paid', 'registered', 'done', 'cancelled'];
 export const SERVER_VALUES_ORDER_TYPE_CONSUMER = 'consumer';
 export const SERVER_VALUES_ORDER_TYPE_WAITER = 'waiter';
+export const SERVER_VALUES_FCM_TYPE_ORDER_STATUS = 'order_status';
 
 // Waitercalls
 export const SERVER_VALUES_WAITERCALL_TYPE_BILL = 'bill';
@@ -21,3 +22,10 @@ export type SERVER_VALUES_QR_CODE_FUNCTION_REMOVED = typeof SERVER_VALUES_QR_COD
 export const SERVER_VALUES_QR_CODE_RESTAURANT_REMOVED_FROM_TABLE =
   'Restaurant successfully removed from table.';
 export type SERVER_VALUES_QR_CODE_RESTAURANT_REMOVED_FROM_TABLE = typeof SERVER_VALUES_QR_CODE_RESTAURANT_REMOVED_FROM_TABLE;
+
+export const SERVER_VALUES_SETTINGS_CATEGORIES = [
+  {
+    data: ['miscellaneous', 'drink', 'food', 'dessert'],
+    title: 'categories'
+  }
+];

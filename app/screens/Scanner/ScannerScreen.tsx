@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Platform, View } from 'react-native';
+import { Platform, Switch, Text, View } from 'react-native';
 import { Button, Icon, Input, ListItem } from 'react-native-elements';
 import Orientation from 'react-native-orientation';
 import QRCodeScanner, { Event } from 'react-native-qrcode-scanner';
@@ -30,7 +30,7 @@ export class ScannerScreen extends Component<Props, State> {
       <Icon
         name={Platform.select({ ios: 'ios-menu', android: 'md-menu' })}
         type="ionicon"
-        containerStyle={styles.icon}
+        // containerStyle={styles.icon}
         onPress={navigation.toggleDrawer}
       />
     ),
@@ -39,16 +39,7 @@ export class ScannerScreen extends Component<Props, State> {
 
   public readonly state = { modeDelete: false, input: '' };
 
-  public componentDidMount = () => {
-    Orientation.lockToPortrait();
-  };
-
-  public componentWillUnmount = () => {
-    Orientation.lockToLandscape();
-  };
-
-  public setMode = (modeDelete: boolean) =>
-    this.setState(prevState => ({ ...prevState, modeDelete }));
+  public setMode = (modeDelete: boolean) => this.setState({ modeDelete });
 
   public removeQRCodeFunction = (qrCodeUuid: string) => {
     postRemoveQRCodeFunction(qrCodeUuid, this.props.slug)
@@ -77,62 +68,26 @@ export class ScannerScreen extends Component<Props, State> {
       ? this.removeQRCodeFunction(event.data.v1QRCodeData)
       : this.assignQRCodeFunction(event.data.v1QRCodeData);
 
-  public onChangeText = (input: string) => this.setState(prevState => ({ ...prevState, input }));
-
-  public renderTopContent = () => {
-    const { modeDelete } = this.state;
-    return (
-      <ListItem
-        containerStyle={styles.content}
-        contentContainerStyle={styles.contentContainer}
-        title={modeDelete ? strings.delete : strings.add}
-        titleStyle={[styles.text, modeDelete ? { color: red } : { color: green }]}
-        // leftIcon={{ type: "material-community", name: "qrcode-edit" }}
-        subtitle={
-          <Input
-            containerStyle={styles.inputContainer}
-            inputStyle={styles.inputText}
-            placeholder={strings.tableNumber}
-            keyboardType="decimal-pad"
-            onChangeText={this.onChangeText}
-            errorMessage={isSmallInteger(this.state.input) ? undefined : strings.invalidInput}
-          />
-        }
-      />
-    );
-  };
-
-  public renderBottomContent = () => {
-    const platformPrefix = Platform.select({ android: 'md', ios: 'ios' });
-    return (
-      <View style={styles.content}>
-        <Button
-          title={strings.deleteButton}
-          icon={{ type: 'ionicon', name: `${platformPrefix}-close`, color: 'white' }}
-          buttonStyle={[styles.button, styles.deleteButton]}
-          onPress={() => this.setMode(true)}
-        />
-        <Button
-          title={strings.addButton}
-          icon={{ type: 'ionicon', name: `${platformPrefix}-add`, color: 'white' }}
-          buttonStyle={[styles.button, styles.addButton]}
-          onPress={() => this.setMode(false)}
-        />
-      </View>
-    );
-  };
+  public onChangeText = (input: string) => this.setState({ input });
 
   public render() {
+    const platformPrefix = Platform.select({ android: 'md', ios: 'ios' });
     return (
       <SafeAreaView style={styles.container}>
-        <QRCodeScanner
+        <View style={styles.leftContainer}>
+          <Switch />
+        </View>
+        <View style={styles.rightContainer}>
+          <Text>Hi</Text>
+        </View>
+        {/* <QRCodeScanner
           onRead={this.handleRead}
           permissionDialogTitle={strings.cameraPermissionTitle}
           permissionDialogMessage={strings.cameraPermissionMessage}
           customMarker={<QRCodeCrosshair lineColor={this.state.modeDelete ? red : green} />}
           topContent={this.renderTopContent()}
           bottomContent={this.renderBottomContent()}
-        />
+        /> */}
       </SafeAreaView>
     );
   }

@@ -28,6 +28,8 @@ export interface Allergenic {
   uuid: string;
 }
 
+export type CategoryValue = 'drink' | 'food' | 'dessert' | 'miscellaneous';
+
 export interface Category {
   category: string;
   uuid: string;
@@ -145,6 +147,7 @@ export interface QRCode {
 
 export interface BasicOrder {
   amount: number;
+  created: Date;
   customChoiceItems: string[];
   menuItem: string;
   menuItemPrice: string;
@@ -175,6 +178,7 @@ export interface Restaurant {
   hasMenu?: boolean;
   itemClassifications: string[];
   licenses: string[];
+  miscellaneousName: string;
   name: string;
   restaurantInfos: string[];
   slug: string;

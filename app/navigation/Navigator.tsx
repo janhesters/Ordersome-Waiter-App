@@ -13,6 +13,7 @@ import HomeScreen, { strings as homeStrings } from '../screens/Home';
 import LoadingScreen from '../screens/Loading';
 import LoginScreen from '../screens/Login';
 import ScannerScreen, { strings as scannerStrings } from '../screens/Scanner';
+import SettingsScreen, { strings as settingsStrings } from '../screens/Settings';
 import { getIconName } from '../services/utils/core';
 
 const createDrawerNavigationOptions = (
@@ -44,8 +45,12 @@ const ScannerStack = createStackNavigator({ ScannerScreen });
 ScannerStack.navigationOptions = ({ navigation }: { navigation: NavigationProp<any> }) =>
   createDrawerNavigationOptions('qr-scanner', scannerStrings.scannerTitle, navigation);
 
+const SettingsStack = createStackNavigator({ SettingsScreen });
+SettingsStack.navigationOptions = ({ navigation }: { navigation: NavigationProp<any> }) =>
+  createDrawerNavigationOptions('cog', settingsStrings.settingsTitle, navigation);
+
 const MainDrawer = createDrawerNavigator(
-  { HomeStack, ScannerStack },
+  { HomeStack, SettingsStack },
   { contentComponent: DrawerMenu }
 );
 
